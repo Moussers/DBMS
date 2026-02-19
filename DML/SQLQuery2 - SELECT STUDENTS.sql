@@ -1,4 +1,4 @@
---SQLQuery2 - SELECT STUDENTS.sql
+--SQLQuery2 - SELECT Students.sql
 USE PV_521_Import;
 
 SELECT 
