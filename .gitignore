@@ -1,4 +1,4 @@
-#Are not tracking .vs, it is config Visual Studio
+# Are not tracking .vs, it is config Visual Studio
 *.vs
 
 ## Ignore Visual Studio temporary files, build results, and
