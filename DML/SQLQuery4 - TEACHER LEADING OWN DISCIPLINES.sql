@@ -8,9 +8,11 @@ SELECT
 	,middle_name			AS		N'ќтчество'
 	,COUNT(tdr.discipline)	AS		N' оличество дисциплин которые ведЄт преподаватель'
 FROM Teachers
-JOIN TeachersDisciplinesRelation AS tdr ON teacher_id = teacher 
+INNER JOIN TeachersDisciplinesRelation AS tdr ON teacher_id = teacher 
 GROUP BY Teachers.teacher_id , Teachers.last_name, Teachers.first_name, Teachers.middle_name
 ORDER BY Teachers.last_name DESC
+--
+------------------------------------------------------------------------------------------------
 --ORDER BY Ц упор€дочить (отсортировать) по;
 --ASC Ц (сокращение от ascending Ц восход€щий) пор€док то есть сортировка от меньшего к большему (0, 1, 2, 3 .. )
 --в случае сортировки слов Ц по алфавиту (ј -> я);

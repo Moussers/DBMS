@@ -6,7 +6,7 @@ SET DATEFIRST 1;	--Для правильной интерпритации дней недели (Пн-1б Вт-2, ..., Вс
 --Объявляем перменные:
 DECLARE @group				AS	INT			= (SELECT group_id		FROM Groups			WHERE group_name = N'PV_521');
 DECLARE	@disciplines		AS	SMALLINT	= (SELECT discipline_id	FROM Disciplines	WHERE discipline_name LIKE N'%MS SQL%');
-DECLARE @number_of_lessons	AS	TINYINT = (SELECT number_of_lessons FROM Disciplines	WHERE discipline_id = @disciplines)
+DECLARE @number_of_lessons	AS	TINYINT		= (SELECT number_of_lessons FROM Disciplines	WHERE discipline_id = @disciplines)
 DECLARE @teacher			AS	INT			= (SELECT teacher_id	FROM Teachers		WHERE first_name = N'Олег');
 DECLARE @start_date			AS	DATE		= N'2025-12-24';
 DECLARE	@start_time			AS	TIME		= (SELECT start_time	FROM Groups			WHERE group_id=@group);
@@ -25,7 +25,7 @@ DECLARE @time	AS TIME  = @start_time;
 WHILE	(@lesson_number < @number_of_lessons)
 BEGIN
 		SET @time = @start_time;
-		--PRINT(FORMATMESSAGE(N'%i   %s   %s   %s',@lesson_number,CAST(@date AS VARCHAR(24)),@start_time,DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
+		--PRINT(FORMATMESSAGE(N'%s   %s   %s   %s',@lesson_number,CAST(@date AS VARCHAR(24)),@start_time,DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
 		IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date]=@date AND [time]=@time AND [group]=@group)
 			INSERT Schedule VALUES(@group, @disciplines, @teacher, @date, @time, IIF(@date<GETDATE(),1,0));
 		SET @lesson_number = @lesson_number + 1;
