@@ -13,7 +13,9 @@ SELECT
 		,[Дата]				= [date]
 		,[Время]			= [time]
 		,[Статус]			= IIF(spent=1, N'Проведено', N'Запланировано')
---		Тернарный оператор: IFF(condition, value_1, value_2)
+--		IIF - тернарный оператор: IFF(condition, value_1, value_2)
+--		Если условие вернуло true тернарный оператор возвращает value_1.
+--		Если условие вернуло false тернарный оператор возвращает value_2;
 FROM	Schedule, Groups, Teachers, Disciplines
 WHERE	[group]		= group_id
 AND		discipline	= discipline_id
