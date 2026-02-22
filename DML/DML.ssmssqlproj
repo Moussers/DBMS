@@ -45,11 +45,11 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery2 - SELECT Students.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery4 - Numbrer Disciplines for every teacher.sql">
+        <FileNode Name="SQLQuery4 - Number Disciplines for every Teacher.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-K3SU1F7\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-K3SU1F7\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery4 - Numbrer Disciplines for every teacher.sql</FullPath>
+          <FullPath>SQLQuery4 - Number Disciplines for every Teacher.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery4 - SELECT AggreagateStudentsAndGroups.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-K3SU1F7\SQLEXPRESS:True</AssociatedConnectionMoniker>
@@ -57,11 +57,11 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery4 - SELECT AggreagateStudentsAndGroups.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLSquery - Teacher leading own Disciplines.sql">
+        <FileNode Name="SQLSquery4 - Teacher leading own Disciplines.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-K3SU1F7\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-K3SU1F7\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLSquery - Teacher leading own Disciplines.sql</FullPath>
+          <FullPath>SQLSquery4 - Teacher leading own Disciplines.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

@@ -4,13 +4,13 @@ USE	PV_521_Import;
 SET DATEFIRST 1;	--Для правильной интерпритации дней недели (Пн-1б Вт-2, ..., Вс-7)
 
 --Объявляем перменные:
-DECLARE @group		AS	INT		=	(SELECT group_id FROM Groups WHERE group_name=N'PV_521');
+DECLARE @group				AS	INT		=	(SELECT group_id FROM Groups WHERE group_name=N'PV_521');
 --DECLARE - это синтаксис переменной.
-DECLARE	@discipline	AS	SMALLINT=	(SELECT discipline_id FROM Disciplines WHERE discipline_name LIKE N'%MS SQL%');
-DECLARE @number_of_lessons	AS	TINYINT	= (SELECT number_of_lessons FROM Disciplines WHERE discipline_id = @discipline);
-DECLARE @teacher	AS	INT		=	(SELECT teacher_id FROM Teachers WHERE first_name = N'Олег');
-DECLARE @start_date AS	DATE	=	N'2025-12-24';
-DECLARE	@start_time	AS	TIME	=	(SELECT start_time FROM Groups	WHERE group_id=@group);
+DECLARE	@discipline			AS	SMALLINT=	(SELECT discipline_id FROM Disciplines WHERE discipline_name LIKE N'%MS SQL%');
+DECLARE @number_of_lessons	AS	TINYINT	=	(SELECT number_of_lessons FROM Disciplines WHERE discipline_id = @discipline);
+DECLARE @teacher			AS	INT		=	(SELECT teacher_id FROM Teachers WHERE first_name = N'Олег');
+DECLARE @start_date			AS	DATE	=	N'2025-12-24';
+DECLARE	@start_time			AS	TIME	=	(SELECT start_time FROM Groups	WHERE group_id=@group);
 
 PRINT(@group);
 PRINT(@discipline);
