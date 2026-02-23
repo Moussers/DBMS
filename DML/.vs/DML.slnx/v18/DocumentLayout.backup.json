@@ -23,23 +23,24 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SQLQuery2 - SELECT STUDENTS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (52))",
+              "Title": "SQLQuery2 - SELECT STUDENTS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (54))",
               "DocumentMoniker": "C:\\Users\\Sand\\source\\repos\\SQL\\DML\\SQLQuery2 - SELECT STUDENTS.sql",
               "RelativeDocumentMoniker": "SQLQuery2 - SELECT STUDENTS.sql",
-              "ToolTip": "SQLQuery2 - SELECT STUDENTS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (52))",
+              "ToolTip": "SQLQuery2 - SELECT STUDENTS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (54))",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
               "WhenOpened": "2026-02-16T22:37:44.356Z",
-              "EditorCaption": " - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (52))"
+              "EditorCaption": " - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (54))"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SQLQuery1-INSERT DIRECTIONS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_Import (DESKTOP-K3SU1F7\\Sand (56))",
+              "Title": "SQLQuery1-INSERT DIRECTIONS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (57))",
               "DocumentMoniker": "C:\\Users\\Sand\\source\\repos\\SQL\\DML\\SQLQuery1-INSERT DIRECTIONS.sql",
               "RelativeDocumentMoniker": "SQLQuery1-INSERT DIRECTIONS.sql",
-              "ToolTip": "SQLQuery1-INSERT DIRECTIONS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_Import (DESKTOP-K3SU1F7\\Sand (56))",
+              "ToolTip": "SQLQuery1-INSERT DIRECTIONS.sql - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (57))",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-02-16T22:37:43.202Z"
+              "WhenOpened": "2026-02-16T22:37:43.202Z",
+              "EditorCaption": " - DESKTOP-K3SU1F7\\SQLEXPRESS.PV_521_DDL (DESKTOP-K3SU1F7\\Sand (57))"
             }
           ]
         }
