@@ -16,7 +16,7 @@ BEGIN
 	PRINT(@teacher);
 	DECLARE @discipline				AS SMALLINT = (SELECT discipline_id FROM Disciplines WHERE discipline_name LIKE @discipline_name);
 	PRINT(@discipline);
-	DECLARE @number_of_lessons		AS TINYINT	= (SELECT number_of_lessons FROM Disciplines WHERE @discipline_name LIKE @discipline_name);
+	DECLARE @number_of_lessons		AS TINYINT	= (SELECT number_of_lessons FROM Disciplines WHERE discipline_name LIKE @discipline_name);
 	PRINT(@number_of_lessons);
 	--DECLARE @lesson_number		AS TINYINT = 0;
 	--DECLARE @date					AS DATE		= @start_time;

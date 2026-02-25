@@ -3,11 +3,12 @@ USE PV_521_Import;
 SET DATEFIRST 1;
 GO
 
-Create PROCEDURE sp_SelectScheduleFor @group AS NVARCHAR(10)
+ALTER PROCEDURE sp_SelectScheduleFor @group AS NCHAR(10)
 --CREATE PROCEDURE sp_SelectScheduleFor @group AS NVARCHAR(10)
 AS
 BEGIN
 	DECLARE @group_id AS INT = (SELECT group_id FROM Groups WHERE group_name LIKE @group);
+	PRINT @group_id
 	SELECT
 			[Группа]	= group_name,
 			[Дисциплина]= discipline_name,
