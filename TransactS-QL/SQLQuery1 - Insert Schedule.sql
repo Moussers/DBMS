@@ -27,7 +27,7 @@ WHILE	(@lesson_number < @number_of_lessons)
 BEGIN
 		SET @time = @start_time;
 		PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
-		--CAST - переобразование типов, как оператор as в C#;
+		--CAST - переобразование типов, как оператор static cast в C++;
 		IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
 		--NOT EXISTS - не существует. Если не существует SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group
 		--тогда выполняем INSERT, в противном случяе код не выполняется.

@@ -38,7 +38,6 @@ BEGIN
 PRINT(FORMATMESSAGE(N'%s', N'________________________________________________________________________________________________________________________'))
 PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
---INSERT Schedule(@start_date, );
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
 PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s        %s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
@@ -49,6 +48,7 @@ PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s        %s %s    %s %s', CAST(@star
 PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 3, @name_of_week);
+--INSERT Schedule(@start_date, );
 --Second week
 PRINT(FORMATMESSAGE(N'%s', N'________________________________________________________________________________________________________________________'))
 PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
