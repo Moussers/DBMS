@@ -1,14 +1,14 @@
---SQLQuery2 - Insert Schedule.sql
+п»ї--SQLQuery2 - Insert Schedule.sql
 USE PV_521_Import;
 
 SELECT 
-		[Время] = start_time
-		,[Дисциплина] = discipline_name
-		,[Группа] = [group]
-		--Руссое слово в квадратных скобках, выводится как и через оператор AS
-		,[Фамилия преподователя] = last_name
-		,[Имя преподователя] = first_name
-		,[Отчество] = middle_name
+		[Р’СЂРµРјСЏ] = start_time
+		,[Р”РёСЃС†РёРїР»РёРЅР°] = discipline_name
+		,[Р“СЂСѓРїРїР°] = [group]
+		--Р СѓСЃСЃРѕРµ СЃР»РѕРІРѕ РІ РєРІР°РґСЂР°С‚РЅС‹С… СЃРєРѕР±РєР°С…, РІС‹РІРѕРґРёС‚СЃСЏ РєР°Рє Рё С‡РµСЂРµР· РѕРїРµСЂР°С‚РѕСЂ AS
+		,[Р¤Р°РјРёР»РёСЏ РїСЂРµРїРѕРґРѕРІР°С‚РµР»СЏ] = last_name
+		,[РРјСЏ РїСЂРµРїРѕРґРѕРІР°С‚РµР»СЏ] = first_name
+		,[РћС‚С‡РµСЃС‚РІРѕ] = middle_name
 FROM Schedule, Disciplines, Teachers, Groups;
 --GROUP BY lesson_id
 ;

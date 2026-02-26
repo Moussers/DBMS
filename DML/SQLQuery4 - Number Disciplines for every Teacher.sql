@@ -1,10 +1,10 @@
---SQLQuery4 - Numbrer Disciplines for every Teacher.sql
+п»ї--SQLQuery4 - Numbrer Disciplines for every Teacher.sql
 
 USE PV_521_Import;
 
 SELECT
-	discipline_name					AS	N'Названия направлений'
-	,COUNT(DISTINCT tdr.teacher)	AS	N'Количество преподователей'
+	discipline_name					AS	N'РќР°Р·РІР°РЅРёСЏ РЅР°РїСЂР°РІР»РµРЅРёР№'
+	,COUNT(DISTINCT tdr.teacher)	AS	N'РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРїРѕРґРѕРІР°С‚РµР»РµР№'
 FROM Disciplines
 INNER JOIN TeachersDisciplinesRelation AS tdr ON Disciplines.discipline_id = tdr.discipline
 GROUP BY discipline_id, discipline_name

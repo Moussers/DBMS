@@ -1,6 +1,6 @@
---SQLQuery1 - SELECT DIRECTIONS.sql
+п»ї--SQLQuery1 - SELECT DIRECTIONS.sql
 USE PV_521_DDL;
 
 SELECT * FROM Directions;
--- * Звёздочка  обозначает все поля. То есть выбрать все 
---поля из таблицы Directions.
+-- * Р—РІС‘Р·РґРѕС‡РєР°  РѕР±РѕР·РЅР°С‡Р°РµС‚ РІСЃРµ РїРѕР»СЏ. РўРѕ РµСЃС‚СЊ РІС‹Р±СЂР°С‚СЊ РІСЃРµ 
+--РїРѕР»СЏ РёР· С‚Р°Р±Р»РёС†С‹ Directions.

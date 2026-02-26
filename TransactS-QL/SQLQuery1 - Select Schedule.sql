@@ -1,21 +1,21 @@
---SQLQuery1 - Select Schedule.sql
+п»ї--SQLQuery1 - Select Schedule.sql
 
 USE PV_521_Import
 
 --DELETE FROM Schedule WHERE [group]=(SELECT group_id FROM Groups WHERE group_name = N'PV_521');
---DELETE - удаляет таблицу
+--DELETE - СѓРґР°Р»СЏРµС‚ С‚Р°Р±Р»РёС†Сѓ
 
 SELECT 
-		[Группа]			=	[group]
-		,[Дисциплина]		= discipline_name
-		,[Преподователь]	= FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name)
-		,[День]				= DATENAME(WEEKDAY, [date])
-		,[Дата]				= [date]
-		,[Время]			= [time]
-		,[Статус]			= IIF(spent=1, N'Проведено', N'Запланировано')
---		IIF - тернарный оператор: IFF(condition, value_1, value_2)
---		Если условие вернуло true тернарный оператор возвращает value_1.
---		Если условие вернуло false тернарный оператор возвращает value_2;
+		[Р“СЂСѓРїРїР°]			=	[group]
+		,[Р”РёСЃС†РёРїР»РёРЅР°]		= discipline_name
+		,[РџСЂРµРїРѕРґРѕРІР°С‚РµР»СЊ]	= FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name)
+		,[Р”РµРЅСЊ]				= DATENAME(WEEKDAY, [date])
+		,[Р”Р°С‚Р°]				= [date]
+		,[Р’СЂРµРјСЏ]			= [time]
+		,[РЎС‚Р°С‚СѓСЃ]			= IIF(spent=1, N'РџСЂРѕРІРµРґРµРЅРѕ', N'Р—Р°РїР»Р°РЅРёСЂРѕРІР°РЅРѕ')
+--		IIF - С‚РµСЂРЅР°СЂРЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ: IFF(condition, value_1, value_2)
+--		Р•СЃР»Рё СѓСЃР»РѕРІРёРµ РІРµСЂРЅСѓР»Рѕ true С‚РµСЂРЅР°СЂРЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ РІРѕР·РІСЂР°С‰Р°РµС‚ value_1.
+--		Р•СЃР»Рё СѓСЃР»РѕРІРёРµ РІРµСЂРЅСѓР»Рѕ false С‚РµСЂРЅР°СЂРЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ РІРѕР·РІСЂР°С‰Р°РµС‚ value_2;
 FROM	Schedule, Groups, Teachers, Disciplines
 WHERE	[group]		= group_id
 AND		discipline	= discipline_id

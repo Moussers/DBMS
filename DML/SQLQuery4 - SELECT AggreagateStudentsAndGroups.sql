@@ -1,10 +1,10 @@
---SQLQuery4 - SELECT AggreagateStudentsAndGroups.sql
+п»ї--SQLQuery4 - SELECT AggreagateStudentsAndGroups.sql
 
 USE PV_521_Import;
 
 SELECT
-	direction_name				AS 'Направление обучения'
-	,COUNT(DISTINCT group_id)	AS 'Количество групп'
+	direction_name				AS 'РќР°РїСЂР°РІР»РµРЅРёРµ РѕР±СѓС‡РµРЅРёСЏ'
+	,COUNT(DISTINCT group_id)	AS 'РљРѕР»РёС‡РµСЃС‚РІРѕ РіСЂСѓРїРї'
 	,COUNT(stud_id)
 FROM Students,Groups,Directions
 WHERE	[group] = group_id
@@ -13,16 +13,16 @@ GROUP BY direction_name
 ;
 
 SELECT
-	direction_name				AS N'Напрвление обучение'
-	--,COUNT(stud_id)				AS N'Количество студентов'
-	--,COUNT(DISTINCT group_id)	AS N'Количество групп'
-	--DISTINCT выбирает только уникальные значения в таблице
-	,(SELECT COUNT(group_id) FROM Groups, Directions WHERE direction=direction_id) AS N'Количство групп'
+	direction_name				AS N'РќР°РїСЂРІР»РµРЅРёРµ РѕР±СѓС‡РµРЅРёРµ'
+	--,COUNT(stud_id)				AS N'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ'
+	--,COUNT(DISTINCT group_id)	AS N'РљРѕР»РёС‡РµСЃС‚РІРѕ РіСЂСѓРїРї'
+	--DISTINCT РІС‹Р±РёСЂР°РµС‚ С‚РѕР»СЊРєРѕ СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІ С‚Р°Р±Р»РёС†Рµ
+	,(SELECT COUNT(group_id) FROM Groups, Directions WHERE direction=direction_id) AS N'РљРѕР»РёС‡СЃС‚РІРѕ РіСЂСѓРїРї'
 	,(
 		SELECT COUNT (stud_id) 
 		FROM Students, Groups--, Directions 
 		WHERE [group] = group_id
 		AND direction = direction_id
-	)	AS N'Количество студентов'
+	)	AS N'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ'
 FROM Directions
 ;
