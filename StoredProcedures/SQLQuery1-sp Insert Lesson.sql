@@ -6,12 +6,12 @@ GO
 ALTER PROCEDURE sp_InsertLesson
 --CREATE PROCEDURE sp_InsertLesson
 --параметры процедуры
-	@lesson_number	AS TINYINT
+	@lesson_number	AS TINYINT OUTPUT
 	,@group			AS INT
 	,@discipline	AS SMALLINT
 	,@teacher		AS INT
 	,@date			AS DATE
-	,@time			AS TIME
+	,@time			AS TIME OUTPUT
 AS
 BEGIN
 	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
