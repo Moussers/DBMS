@@ -32,16 +32,23 @@ DECLARE @time			AS TIME(0)  = @start_time;
 WHILE	(@lesson_number < @number_of_lessons)
 BEGIN
 		SET @time = @start_time;
-		EXEC sp_InsertLesson @lesson_number, @group, @discipline, @teacher, @date, @time;
-		SET @time = DATEADD(MINUTE, 95, @start_time);
-		EXEC sp_InsertLesson @lesson_number, @group, @discipline, @teacher, @date, @time;
-
-		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);		--определяем текущий день недели . (Как раз для этого више написано 'SET DATEFIRST 1');
+		--	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
+		--IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+		--	INSERT INTO Schedule 
+		--	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
+		--SET @lesson_number = @lesson_number + 1;
+		--SET @time = DATEADD(MINUTE, 95, @time);
+		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number, OUTPUT;
+				--	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
+		--IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+		--	INSERT INTO Schedule 
+		--	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
+		--SET @lesson_number = @lesson_number + 1;
+		--SET @time = DATEADD(MINUTE, 95, @time);
+		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number, OUTPUT;
+		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
 		--PRINT(@day);
-		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);	--если день равен 5 (пятнице), прибавляем 3, потому что переходим к поенедельну.
-																	--Во всех остальных случаях, то есть понедельник или среда, мы сдвигаем на 2 дня.
+		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
+	END
 END
---BEGIN \ END - вместо фигурных скобок
-
 PRINT(@time);
-END
