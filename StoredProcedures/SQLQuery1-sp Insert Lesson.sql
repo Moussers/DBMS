@@ -1,11 +1,11 @@
---SQLQuery1-sp Insert Lesson.sql
+п»ї--SQLQuery1-sp Insert Lesson.sql
 
 USE PV_521_Import;
 GO
 
 ALTER PROCEDURE sp_InsertLesson
 --CREATE PROCEDURE sp_InsertLesson
---параметры процедуры
+--РїР°СЂР°РјРµС‚СЂС‹ РїСЂРѕС†РµРґСѓСЂС‹
 	@lesson_number	AS TINYINT OUTPUT
 	,@group			AS INT
 	,@discipline	AS SMALLINT
