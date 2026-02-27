@@ -26,8 +26,8 @@ BEGIN
 PRINT(@start_date);
 
 --В цикле перебираем занятие по номеру, определяем датту и время каждого
-DECLARE @date			AS DATE = @start_date;	--Счиать даты;
-DECLARE @lesson_number	AS TINYINT = 1;			--Считать уроки;
+DECLARE @date			AS DATE = @start_date;
+DECLARE @lesson_number	AS TINYINT = dbo.CountLessons(@group,@discipline);
 DECLARE @time			AS TIME(0)  = @start_time;
 WHILE	(@lesson_number < @number_of_lessons)
 BEGIN
@@ -38,14 +38,14 @@ BEGIN
 		--	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
 		--SET @lesson_number = @lesson_number + 1;
 		--SET @time = DATEADD(MINUTE, 95, @time);
-		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number, OUTPUT;
+		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
 				--	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
 		--IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
 		--	INSERT INTO Schedule 
 		--	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
 		--SET @lesson_number = @lesson_number + 1;
 		--SET @time = DATEADD(MINUTE, 95, @time);
-		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number, OUTPUT;
+		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
 		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
 		--PRINT(@day);
 		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
