@@ -47,7 +47,7 @@ PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
 IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
 BEGIN
-	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time, IIF(@date < GETDATE(), 1, 0));
 END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
@@ -73,7 +73,7 @@ PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
 IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
 BEGIN
-	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time, IIF(@date < GETDATE(), 1, 0));
 END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
@@ -81,7 +81,7 @@ PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
 IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
 BEGIN
-	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time, IIF(@date < GETDATE(), 1, 0));
 END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
