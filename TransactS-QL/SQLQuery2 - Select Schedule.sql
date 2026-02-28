@@ -10,7 +10,7 @@ SELECT
 		,[День] = DATENAME(WEEKDAY, [date])
 		,[Дата] = [date]
 		,[Время] = [time]
-		,[]
+		--,[Статус] = IIF(spent=1, 'Проведено', 'Непроведено')
 FROM Schedule, Disciplines, Teachers, Groups;
 --GROUP BY lesson_id
 ;

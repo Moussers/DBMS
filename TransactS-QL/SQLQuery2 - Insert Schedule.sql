@@ -5,12 +5,12 @@ USE PV_521_Import;
 DECLARE @group						AS INT			= (SELECT group_id			FROM Groups			WHERE group_name = N'PV_521');
 DECLARE @group_name					AS NCHAR(10)	= (SELECT group_name		FROM Groups			WHERE group_id = @group);
 DECLARE @discipline_imperative		AS SMALLINT		= (SELECT discipline_id		FROM Disciplines	WHERE discipline_name LIKE N'%Процедурное%C++%');
-DECLARE @discipline_OOP				AS SMALLINT		= (SELECT discipline_id		FROM Disciplines	WHERE discipline_name LIKE N'%Hardware%');
+DECLARE @discipline_hard			AS SMALLINT		= (SELECT discipline_id		FROM Disciplines	WHERE discipline_name LIKE N'%Hardware%');
 --DECLARE @number_lesson			AS TINYINT		= (SELECT number_of_lessons	FROM Disciplines	WHERE discipline_id = @discipline_imperative);
 DECLARE @date						AS DATE			= N'2025-12-22';
 DECLARE @time						AS TIME			= (SELECT start_time		FROM Groups			WHERE @group = group_id);
 DECLARE @imperative					AS VARCHAR(150)	= (SELECT discipline_name	FROM Disciplines	WHERE discipline_id = @discipline_imperative);
-DECLARE @hardware					AS VARCHAR(150)	= (SELECT discipline_name	FROM Disciplines	WHERE discipline_id = @discipline_OOP);
+DECLARE @hardware					AS VARCHAR(150)	= (SELECT discipline_name	FROM Disciplines	WHERE discipline_id = @discipline_hard);
 DECLARE @teacherImperID				AS SMALLINT		= (SELECT teacher_id		FROM Teachers WHERE last_name = N'Ковтун')
 DECLARE @teacherHardID				AS SMALLINT		= (SELECT teacher_id		FROM Teachers WHERE last_name = N'Кобылинский')
 DECLARE @teacherImperSurname		AS VARCHAR(150) = (SELECT last_name			FROM Teachers WHERE teacher_id = @teacherImperID);
@@ -21,17 +21,17 @@ DECLARE @teacherImperMiddleName		AS VARCHAR(150) = (SELECT middle_name		FROM Tea
 DECLARE @teacherHardMiddleName		AS VARCHAR(150) = (SELECT middle_name		FROM Teachers WHERE teacher_id = @teacherHardID);
 
 --PRINT(@group);
-PRINT(@group_name);
+--PRINT(@group_name);
 --PRINT(@discipline_imperative);
 --PRINT(@discipline_OOP);
 --PRINT(@number_lesson);
 --PRINT(@time);
-PRINT(@teacherImperSurname);
-PRINT(@teacherImperFirstName);
-PRINT(@teacherImperMiddleName);
-PRINT(@teacherHardSurname);
-PRINT(@teacherHardFirstName);
-PRINT(@teacherHardMiddleName);
+--PRINT(@teacherImperSurname);
+--PRINT(@teacherImperFirstName);
+--PRINT(@teacherImperMiddleName);
+--PRINT(@teacherHardSurname);
+--PRINT(@teacherHardFirstName);
+--PRINT(@teacherHardMiddleName);
 
 DECLARE @start_date AS DATE = @date; 
 DECLARE @start_time AS TIME = @time;
@@ -46,19 +46,25 @@ PRINT(FORMATMESSAGE(N'%s', N'___________________________________________________
 PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
 IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
-INSERT Schedule VALUES(@start_date,@group, @hardware, @teacherHardID, @name_of_week, @start_time);
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
 PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s %s        %s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------------------------'))
---IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
---INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
+IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_imperative, @teacherImperID, @start_date, @start_time);
+END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
 PRINT(FORMATMESSAGE(N'%s %s %s %s %s % s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
---IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
---INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
+IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_imperative, @teacherImperID, @start_date, @start_time);
+END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 3, @name_of_week);
 --Second week
@@ -66,19 +72,25 @@ PRINT(FORMATMESSAGE(N'%s', N'___________________________________________________
 PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
 IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
---INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
 PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s % s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------+--------------------------------+-----------+-----------------'))
---IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
---INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
+IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_hard, @teacherHardID, @start_date, @start_time);
+END
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
 PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|' ,  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
 PRINT(FORMATMESSAGE(N'%s', N'-----------+-------------------------------------------+------------|--------------------------------+-----------+-----------------'))
---IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
---INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
+IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+BEGIN
+	INSERT Schedule VALUES(@group, @discipline_imperative, @teacherImperID, @start_date, @start_time);
+END
 SET @start_week = @start_week + 1;
 SET @name_of_week = DATEADD(DAY, 3, @name_of_week);
 END;
