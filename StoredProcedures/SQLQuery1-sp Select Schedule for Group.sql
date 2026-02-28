@@ -24,3 +24,6 @@ BEGIN
 	AND discipline = discipline_id
 	AND teacher = teacher_id
 END
+
+--ALTER - DDL;
+--UPDATE - DML;

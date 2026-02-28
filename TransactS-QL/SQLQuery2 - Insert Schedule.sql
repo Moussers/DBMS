@@ -15,16 +15,21 @@ DECLARE @teacherImperSurname		AS VARCHAR(150) = (SELECT last_name FROM Teachers 
 DECLARE @teacherHardSurname			AS VARCHAR(150) = (SELECT last_name FROM Teachers WHERE last_name = 'Кобылинский');
 DECLARE @teacherImperFirstName		AS VARCHAR(150) = (SELECT first_name FROM Teachers WHERE last_name = @teacherImperSurname);
 DECLARE @teacherHardFirstName		AS VARCHAR(150) = (SELECT first_name FROM Teachers WHERE last_name = @teacherHardSurname);
+DECLARE @teacherImperMiddleName		AS VARCHAR(150) = (SELECT middle_name FROM Teachers WHERE last_name = @teacherImperSurname);
+DECLARE @teacherHardMiddleName		AS VARCHAR(150) = (SELECT middle_name FROM Teachers WHERE last_name = @teacherHardSurname);
+
 --PRINT(@group);
 PRINT(@group_name);
 --PRINT(@discipline_imperative);
 --PRINT(@discipline_OOP);
 --PRINT(@number_lesson);
 --PRINT(@time);
---PRINT(@teacherImperSurname);
---PRINT(@teacherHardSurname);
---PRINT(@teacherImperFirstName);
---PRINT(@teacherHardFirstName);
+PRINT(@teacherImperSurname);
+PRINT(@teacherImperFirstName);
+PRINT(@teacherImperMiddleName);
+PRINT(@teacherHardSurname);
+PRINT(@teacherHardFirstName);
+PRINT(@teacherHardMiddleName);
 
 DECLARE @start_date AS DATE = @date; 
 DECLARE @start_time AS TIME = @time;
@@ -35,32 +40,33 @@ SET @start_date = @date;
 WHILE (@start_week < @weeks_in_Month)
 BEGIN
 --First week
-PRINT(FORMATMESSAGE(N'%s', N'________________________________________________________________________________________________________________________'))
-PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
+PRINT(FORMATMESSAGE(N'%s', N'___________________________________________________________________________________________________________________________________'))
+PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------|-----------------'))
+IF NOT EXISTS (SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
+INSERT Schedule VALUES(@start_date, @hardware, @group_name, @teacherHardFirstName, @teacherHardSurname, @teacherHardMiddleName, @name_of_week, @start_time);
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
-PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s        %s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|------------------------------'))
+PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s %s        %s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------------------------'))
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
-PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
+PRINT(FORMATMESSAGE(N'%s %s %s %s %s % s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|',  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------|-----------------'))
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 3, @name_of_week);
---INSERT Schedule(@start_date, );
 --Second week
-PRINT(FORMATMESSAGE(N'%s', N'________________________________________________________________________________________________________________________'))
-PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|------------------------------'))
+PRINT(FORMATMESSAGE(N'%s', N'___________________________________________________________________________________________________________________________________'))
+PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------|-----------------'))
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
-PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
+PRINT(FORMATMESSAGE(N'%s %s %s                               %s %s %s %s %s %s % s %s %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @hardware, N'|', @group_name, N'|', @teacherHardSurname, @teacherHardFirstName, @teacherHardMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------|-----------------'))
 SET @start_date = DATEADD(DAY, 2, @start_date);
 SET @name_of_week = DATEADD(DAY, 2, @name_of_week);
-PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|' ,  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
-PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------|-----------|------------------'))
+PRINT(FORMATMESSAGE(N'%s %s %s %s %s %s %s %s %s        %s %s    %s %s', CAST(@start_date AS VARCHAR(24)), N'|', @imperative, N'|' ,  @group_name, N'|', @teacherImperSurname, @teacherImperFirstName, @teacherImperMiddleName, N'|', CAST(DATENAME(WEEKDAY, @name_of_week) AS VARCHAR(24)), N'|',CAST(@start_time AS VARCHAR(24)), N'|'))
+PRINT(FORMATMESSAGE(N'%s', N'-----------|-------------------------------------------|------------|--------------------------------|-----------|-----------------'))
 SET @start_week = @start_week + 1;
 SET @name_of_week = DATEADD(DAY, 3, @name_of_week);
 END;
