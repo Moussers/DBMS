@@ -1,4 +1,4 @@
---SQLQuery1-Get Next Learning Day.sql
+ï»¿--SQLQuery1-Get Next Learning Day.sql
 USE PV_521_Import;
 GO
 
@@ -7,7 +7,7 @@ CREATE OR ALTER FUNCTION GetNextLearningDay(@date AS DATE, @time AS TIME) RETURN
 AS
 BEGIN
 	DECLARE @current_lesson INT; 
-	SELECT TOP 1 @current_lesson = DATEPART(WEEKDAY,[date])		--DATEPART áåðåò íîìåð äíÿ íà÷èíàÿ ñ íóëÿ äî 6, áëàãîäàðÿ êëþ÷ó WEEKDAY
+	SELECT TOP 1 @current_lesson = DATEPART(WEEKDAY,[date])		--DATEPART Ð±ÐµÑ€ÐµÑ‚ Ð½Ð¾Ð¼ÐµÑ€ Ð´Ð½Ñ Ð½Ð°Ñ‡Ð¸Ð½Ð°Ñ Ñ 0 Ð´Ð¾ 6, Ð±Ð»Ð°Ð³Ð¾Ð´Ð°Ñ€Ñ ÐºÐ»ÑŽÑ‡Ñƒ WEEKDAY
 	FROM Schedule 
 	WHERE [date] > @date OR [date] = @date AND [time] > @time
 	ORDER BY [date], [time];
