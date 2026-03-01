@@ -42,7 +42,10 @@ BEGIN
 		SET @lesson_number = @lesson_number + 1;
 
 		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);		--определяем текущий день недели . (Как раз для этого више написано 'SET DATEFIRST 1');
-		--PRINT(@day);
+		--DECLARE @tempVariable AS TINYINT = DATEPART(DAY, @date)	--берёт день как часть отдельную часть от всей даты, потому что тип формата DAY указан 
+		--первым аргументом в скобках
+		PRINT(@day);
+		--PRINT(@tempVariable);
 		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);	--если день равен 5 (пятнице), прибавляем 3, потому что переходим к поенедельну.
 																	--Во всех остальных случаях, то есть понедельник или среда, мы сдвигаем на 2 дня.
 END
