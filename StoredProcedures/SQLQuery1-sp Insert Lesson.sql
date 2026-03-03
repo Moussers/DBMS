@@ -11,7 +11,7 @@ CREATE OR ALTER PROCEDURE sp_InsertLesson
 	@discipline		AS	SMALLINT,
 	@teacher		AS	SMALLINT,
 	@date			AS	DATE,
-	@time			AS	TIME	OUTPUT,		--
+	@time			AS	TIME	OUTPUT,		
 	@lesson_number	AS	TINYINT	OUTPUT
 
 AS

@@ -14,7 +14,7 @@ BEGIN
 
 	WHILE @day <= 14
 	BEGIN
-		IF (@weekdays & POWER(2,@day % 7 - 1)) != 0 RETURN @day;
+		IF (@weekdays & POWER(2,@day % 7 - 1)) != 0 RETURN @day % 7;  --& () переводит weekdays в 0 или один
 		SET @day = @day + 1;
 	END
 	RETURN 0;

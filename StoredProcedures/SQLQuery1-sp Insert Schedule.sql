@@ -11,6 +11,7 @@ ALTER PROCEDURE sp_InsertScheduleStacionar
 AS
 BEGIN
 	DECLARE @group					AS INT		= (SELECT group_id FROM Groups WHERE group_name LIKE @group_name);
+	SELECT @group_name = group_name FROM Groups WHERE group_id = @group;
 	PRINT(@group);
 	DECLARE @teacher				AS SMALLINT = (SELECT teacher_id FROM Teachers WHERE first_name LIKE @teacher_first_name);
 	PRINT(@teacher);
@@ -46,7 +47,7 @@ BEGIN
 		--SET @lesson_number = @lesson_number + 1;
 		--SET @time = DATEADD(MINUTE, 95, @time);
 		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
-		DECLARE @day	AS TINYINT = dbo.GetNextLearningDay(@date, @time);
+		DECLARE @day	AS TINYINT = dbo.GetNextLearningDay(@group_name);
 		--DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
 		--PRINT(@day);
 		SET @date = dbo.GetNexLearningDate(@date, @time);
