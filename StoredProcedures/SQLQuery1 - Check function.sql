@@ -10,5 +10,4 @@ PRINT(@group);
 PRINT(@date);
 PRINT(@time);
 
-DECLARE @result	AS	TINYINT = POWER(2, 3);
-PRINT(@result);
+SELECT [date] FROM DaysOFF
