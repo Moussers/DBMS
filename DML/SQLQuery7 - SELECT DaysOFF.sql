@@ -1,9 +1,9 @@
---SQLQuery7 - SELECT DaysOFF.sql
+п»ї--SQLQuery7 - SELECT DaysOFF.sql
 USE PV_521_Import;
 
 SELECT 
-		[Дата]		= [date],
-		[Праздник]	= holiday_name
+		[Р”Р°С‚Р°]		= [date],
+		[РџСЂР°Р·РґРЅРёРє]	= holiday_name
 FROM DaysOFF, Holidays
 WHERE holiday = holiday_id
 ORDER BY [date]

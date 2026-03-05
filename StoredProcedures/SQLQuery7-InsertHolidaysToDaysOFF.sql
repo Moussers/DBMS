@@ -1,4 +1,4 @@
---SQLQuery7-InsertHolidaysToDaysOFF.sql
+п»ї--SQLQuery7-InsertHolidaysToDaysOFF.sql
 use PV_521_Import;
 GO
 
@@ -18,15 +18,15 @@ BEGIN
 	IF @day IS NULL AND @month IS NULL
 	BEGIN
 		DECLARE @holi_date AS DATE;
-		IF @name = 'Новогодние каникулы'
+		IF @name = 'РќРѕРІРѕРіРѕРґРЅРёРµ РєР°РЅРёРєСѓР»С‹'
 		BEGIN
 			SET @holi_date = DATEFROMPARTS(@year-1, 12, 30);
 		END 
-		IF @name = 'Пасха'
+		IF @name = 'РџР°СЃС…Р°'
 		BEGIN
 			SET @holi_date = DATEFROMPARTS(@year, 04, 12);
 		END
-		IF @name = 'Летние каникулы'
+		IF @name = 'Р›РµС‚РЅРёРµ РєР°РЅРёРєСѓР»С‹'
 		BEGIN 
 			SET @holi_date = DATEFROMPARTS(@year, 05, 27);
 		END
@@ -41,8 +41,8 @@ BEGIN
 		IF @date_num = 0
 		BEGIN
 			INSERT INTO DaysOFF([date], holiday) VALUES(@holi_date, @i);
-			--(date, holiday) - поля для вставки значений
-			--VALUES(@holi_date, @i) - значения которые мы вставляем
+			--(date, holiday) - РїРѕР»СЏ РґР»СЏ РІСЃС‚Р°РІРєРё Р·РЅР°С‡РµРЅРёР№
+			--VALUES(@holi_date, @i) - Р·РЅР°С‡РµРЅРёСЏ РєРѕС‚РѕСЂС‹Рµ РјС‹ РІСЃС‚Р°РІР»СЏРµРј
 		END
 		SET @duration = @duration-1;
 		SET @holi_date = DATEADD(DAY, 1, @holi_date);
