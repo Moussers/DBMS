@@ -1,4 +1,4 @@
---SQLQuery7 - GetSummertimeSadness.sql
+﻿--SQLQuery7 - GetSummertimeSadness.sql
 USE PV_521_Import;
 SET DATEFIRST 1;
 GO

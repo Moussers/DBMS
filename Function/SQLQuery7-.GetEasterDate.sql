@@ -1,4 +1,4 @@
---SQLQuery7-.GetEasterDate.sql
+﻿--SQLQuery7-.GetEasterDate.sql
 USE PV_521_Import;
 SET DATEFIRST 1;
 GO
