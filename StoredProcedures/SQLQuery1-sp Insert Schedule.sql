@@ -45,11 +45,9 @@ BEGIN
 		--SET @lesson_number = @lesson_number + 1;
 		--SET @time = DATEADD(MINUTE, 95, @time);
 		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
-		DECLARE @day	AS TINYINT = dbo.GetNextLearningDay(@group_name);
-		--DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
+		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
 		--PRINT(@day);
-		SET @date = dbo.GetNexLearningDate(@date, @time);
-		--SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
+		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
 	END
 END
 PRINT(@time);
