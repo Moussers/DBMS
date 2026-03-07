@@ -6,7 +6,7 @@ SET DATEFIRST 1;
 --EXEC sp_InsertScheduleStacionar N'PV_521', N'%ADO.NET%', N'Олег', N'2026-01-21';
 --EXEC sp_InsertScheduleStacionar N'PV_521', N'Сетевое%', N'Олег', N'2026-01-18';
 --EXEC sp_SelectScheduleFor N'PV_521';
---DELETE FROM DaysOFF WHERE [date] = N'2025-12-30';
+--DELETE FROM DaysOFF WHERE YEAR([date]) = 2027;
 --EXEC sp_InsertAllHolidaysFor 2027;
 
 SELECT
@@ -14,5 +14,5 @@ SELECT
 	[Праздник] = holiday_name
 FROM DaysOFF, Holidays
 WHERE holiday=holiday_id
-AND [date] > DATEFROMPARTS(2024, 12, 20);
+AND [date] > DATEFROMPARTS(2023, 12, 20);
 ;

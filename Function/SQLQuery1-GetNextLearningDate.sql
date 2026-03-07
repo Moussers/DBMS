@@ -11,7 +11,7 @@ BEGIN
 	DECLARE @group_id	AS INT = (SELECT group_id FROM Groups WHERE group_name=@group_name);
 	IF(@date = CAST(N'1900-01-01' AS DATE))
 		SET @date = (SELECT MAX([date]) FROM Schedule WHERE [group]=@group_id);
-	--DECLARE @date		AS DATE = (SELECT MAX([date]) FROM Schedule WHERE [group]=@group_name)--;
+	--DECLARE @date		AS DATE = (SELECT MAX([date]) FROM Schedule WHERE [group]=@group_name);
 	DECLARE @day		AS SMALLINT = DATEPART(WEEKDAY, @date);
 	DECLARE @next_day	AS SMALLINT = dbo.GetNextLearningDay(@group_name, @date);
 	DECLARE @interval	AS SMALLINT = @next_day-@day;
