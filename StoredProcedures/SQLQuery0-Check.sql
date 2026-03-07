@@ -14,5 +14,5 @@ SELECT
 	[Праздник] = holiday_name
 FROM DaysOFF, Holidays
 WHERE holiday=holiday_id
-AND [date] > DATEFROMPARTS(2026, 12, 20);
+AND [date] > DATEFROMPARTS(2024, 12, 20);
 ;

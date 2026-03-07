@@ -12,5 +12,7 @@ BEGIN
 	DECLARE @d		AS SMALLINT = (19 * @a + 15) % 30;
 	DECLARE @e		AS SMALLINT = (2 * @b + 4 * @c + 6 * @d + 6) % 7;
 	DECLARE @f		AS SMALLINT = @d + @e;
-	RETURN DATEFROMPARTS(@year, IIF(@f > 26, 5, 4), IIF(@f > 26, @f-26, 4 + @f));
+	DECLARE @result AS DATE = DATEFROMPARTS(@year, IIF(@f > 26, 5, 4), IIF(@f > 26, @f-26, 4 + @f));
+	SET @result = DATEADD(DAY, -1, @result);
+	RETURN @result;
 END

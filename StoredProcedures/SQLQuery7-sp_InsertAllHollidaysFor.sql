@@ -11,6 +11,6 @@ BEGIN
 	EXEC sp_InsertHolidaysFor @year , N'8%';
 	EXEC sp_InsertHolidaysFor @year , N'Пасха';
 	EXEC sp_InsertHolidaysFor @year , N'Май%';
-	EXEC sp_InsertHolidaysFor @year , N'Лет%';
+	EXEC sp_InsertHolidaysFor @year , N'Летние каникулы';
 	EXEC sp_InsertHolidaysFor @year , N'День%';
 END

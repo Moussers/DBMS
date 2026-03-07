@@ -6,7 +6,7 @@ GO
 CREATE OR ALTER FUNCTION GetSummertimeSadness(@year AS SMALLINT) RETURNS DATE
 AS
 BEGIN
-	DECLARE @date		AS	DATE	= DATEFROMPARTS(@year, 08, 01);
+	DECLARE @date		AS	DATE	= DATEFROMPARTS(@year, 27, 05);
 	DECLARE @weekday	AS	TINYINT	= DATEPART(WEEKDAY, @date);
 	DECLARE @start_date	AS	DATE	= DATEADD(DAY, 1-@weekday, @date);
 	RETURN @start_date;
