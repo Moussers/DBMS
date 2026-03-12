@@ -15,4 +15,5 @@ SELECT
 FROM DaysOFF, Holidays
 WHERE holiday=holiday_id
 AND [date] > DATEFROMPARTS(2023, 12, 20);
+
 ;
