@@ -3,11 +3,11 @@
 USE PV_521_Import;
 GO	--Применить
 
-ALTER PROCEDURE sp_InsertScheduleStacionar
+CREATE OR ALTER PROCEDURE sp_InsertScheduleStacionar
 	@group_name					AS NCHAR(10),
 	@discipline_name			AS NVARCHAR(150),
 	@teacher_first_name			AS NVARCHAR(50),
-	@start_date					AS DATE
+	@start_date					AS DATE	= N'1900-01-01'
 AS
 BEGIN
 	DECLARE @group					AS INT		= (SELECT group_id FROM Groups WHERE group_name LIKE @group_name);
@@ -21,15 +21,17 @@ BEGIN
 	PRINT(@number_of_lessons);
 	DECLARE @start_time				AS TIME		= (SELECT start_time FROM Groups WHERE group_id=@group);
 	PRINT(@start_time);
-	
-PRINT(@start_date);
+	PRINT(@start_date);
+	PRINT(N'------------------------------------------------------------')
 
 --В цикле перебираем занятие по номеру, определяем датту и время каждого
-DECLARE @date			AS DATE = @start_date;
+DECLARE @date			AS DATE = 
+IIF(@start_date<>N'1900-01-01', @start_date, (SELECT MAX([date]) FROM Schedule WHERE [group] = @group));
 DECLARE @lesson_number	AS TINYINT = dbo.CountLessons(@group,@discipline);
 DECLARE @time			AS TIME(0)  = @start_time;
 WHILE	(@lesson_number < @number_of_lessons)
 BEGIN
+SET @date = dbo.GetNextLearningDate(@group_name, @date);
 		SET @time = @start_time;
 		--	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
 		--IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
@@ -37,6 +39,7 @@ BEGIN
 		--	VALUES (@group, @discipline, @teacher, @date, @time, IIF(@date < GETDATE(), 1, 0));
 		--SET @lesson_number = @lesson_number + 1;
 		--SET @time = DATEADD(MINUTE, 95, @time);
+		--IF EXISTS (SELECT holiday FROM DaysOFF WHERE [date]=@date) CONTINUE;
 		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
 		--	PRINT(FORMATMESSAGE(N'%i   %s    %s    %s', @lesson_number, CAST(@date AS VARCHAR(24)), DATENAME(WEEKDAY,@date), CAST(@time AS VARCHAR(24))));
 		--IF NOT EXISTS(SELECT lesson_id FROM Schedule WHERE [date] = @date AND [time] = @time AND [group] = @group)
@@ -47,7 +50,8 @@ BEGIN
 		EXEC sp_InsertLesson @group, @discipline, @teacher, @date, @time OUTPUT, @lesson_number OUTPUT;
 		DECLARE @day	AS TINYINT = DATEPART(WEEKDAY, @date);
 		--PRINT(@day);
-		SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
+		--SET @date	=	DATEADD(DAY, IIF(@day = 5, 3, 2), @date);
+		--SET @date = dbo.GetNextLearningDate(@group_name, @date);
 	END
 END
 PRINT(@time);

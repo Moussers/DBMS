@@ -3,7 +3,7 @@ USE PV_521_Import;
 SET DATEFIRST 1;
 GO
 
-ALTER PROCEDURE sp_SelectScheduleFor @group AS NCHAR(10)
+CREATE OR ALTER PROCEDURE sp_SelectScheduleFor @group AS NCHAR(10)
 --CREATE PROCEDURE sp_SelectScheduleFor @group AS NVARCHAR(10)   --(@group AS NVARCHAR(10)) - это параметер, из которого состоит процедура. 
 																 --В других програмных языках при создании функции мы указываем её параметры в скобках ().
 AS
