@@ -20,7 +20,7 @@ BEGIN
 	IF @interval = 0 SET @interval = 7;
 	DECLARE @next_date  AS	DATE = DATEADD(DAY, @interval, @date);
 	RETURN 
-	IIF(EXISTS(SELECT holiday FROM DaysOFF WHERE [date]=@next_date), @next_date, dbo.GetNextLearningDate(@group_name, @next_date));			--Рекурсия
+	IIF(NOT EXISTS(SELECT holiday FROM DaysOFF WHERE [date]=@next_date), @next_date, dbo.GetNextLearningDate(@group_name, @next_date));		--Рекурсия
 	--IF EXISTS(SELECT holiday FROM DaysOFF WHERE [date]=@next_date) SET next_date = dbo.GetNextLearningDate(@group_name, @next_date);		--Рекурсия
 	--RETURN @next_date;
 END;
