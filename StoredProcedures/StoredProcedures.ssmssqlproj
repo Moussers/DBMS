@@ -41,6 +41,12 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery0-Check.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery1 - Schedule shift.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:HG310B510\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>HG310B510\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1 - Schedule shift.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery1-sp Insert Lesson.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:HG310B510\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>HG310B510\SQLEXPRESS</AssociatedConnSrvName>

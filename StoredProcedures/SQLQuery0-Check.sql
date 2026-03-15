@@ -49,3 +49,31 @@ EXEC sp_SelectScheduleFor N'PV_521';
 	--AND		teacher = teacher_id
 	--AND		DATEPART(WEEKDAY,[date]) = 3
 	--ORDER BY [date]
+
+--DECLARE @discipline AS SMALLINT = (SELECT discipline_id FROM Disciplines WHERE discipline_name LIKE N'%Объектно%');
+--PRINT(@discipline);
+--SELECT 
+--[Teacher id] = FORMATMESSAGE(N'%s', last_name, first_name, middle_name),
+--[Предмет] = discipline_name
+--FROM Teachers
+--INNER JOIN TeachersDisciplinesRelation ON teacher_id = teacher
+--INNER JOIN Disciplines ON discipline_id =  discipline
+--WHERE discipline_id = @discipline
+
+DECLARE @number_days		AS	TINYINT = 5;
+DECLARE @start_date			AS	DATE = N'2025-07-18';
+DECLARE @discpline_name		AS	NVARCHAR(150) = N'Процедурное%';
+DECLARE @teacher_surname	AS	NVARCHAR(150) = N'Ковтун';
+DECLARE @discipline			AS	SMALLINT = (SELECT discipline_id FROM Disciplines WHERE discipline_name LIKE @discpline_name);
+DECLARE @teacher			AS	SMALLINT = (SELECT teacher_id FROM Teachers WHERE last_name LIKE @teacher_surname);
+PRINT(@discipline);
+PRINT(@teacher);
+DECLARE @lesson			AS	BIGINT = (SELECT TOP 1 lesson_id FROM Schedule WHERE @discipline = discipline AND @teacher = teacher AND @start_date = [date]);
+DECLARE @finish_lesson	AS	BIGINT = @lesson;
+--SELECT TOP 1 [Дата] = [date] FROM Schedule WHERE @discipline = discipline AND @teacher = teacher; --AND @start_date = [date];
+
+WHILE @finish_lesson IS NOT NULL 
+BEGIN 
+	SET @finish_lesson = @finish_lesson + 1;
+END
+PRINT @finish_lesson;
